@@ -5,7 +5,7 @@ export const ModelScreen = ({ content, children }: { content: ReactNode, childre
   return <>
     <Container maxWidth="md">
       <Grid container>
-        <Grid item xs={12} sm={6} md={8} sx={{ paddingTop: "10px", verticalAlign: "center", alignSelf: "center" }}>
+        <Grid item xs={12} sm={6} md={8} sx={{ paddingTop: "10px", verticalAlign: "center", alignSelf: "center", paddingRight: "80px" }}>
           {content}
         </Grid>
         <Grid item xs={12} sm={6} md={4} >
