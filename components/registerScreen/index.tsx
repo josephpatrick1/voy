@@ -17,9 +17,11 @@ export default function LoginScreen() {
     const { signIn } = useAuth();
 
     const [username, setUsername] = useState<string>();
+    const [name, setName] = useState<string>();
+    const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         if(!username || !password) {
             alert("Preencha o Login e Senha")
             return false;
@@ -51,6 +53,10 @@ export default function LoginScreen() {
                     <br />
                     <TextField value={username} onChange={(e) => { setUsername(e.target.value) }} variant="outlined" label="Usuário" />
                     <br /><br />
+                    <TextField value={name} onChange={(e) => { setName(e.target.value) }} variant="outlined" label="Nome" />
+                    <br /><br />
+                    <TextField value={email} onChange={(e) => { setEmail(e.target.value) }} variant="outlined" label="E-mail" type="email" />
+                    <br /><br />
                     <TextField value={password} onChange={(e) => { setPassword(e.target.value) }} variant="outlined" label="Senha" type="password" />
                     <br /><br />
 
@@ -63,14 +69,14 @@ export default function LoginScreen() {
                             }}
                             variant="contained"
                             fullWidth
-                            onClick={handleLogin}
+                            onClick={handleRegister}
                         >
-                            Entrar
+                            Cadastrar
                         </Button>
                     </Link>
                     <br /><br />
                     <Typography>
-                        Novo por aqui? <Link href="/cadastro">Criar Conta</Link>
+                        Já tem conta? <Link href="/login">Entrar</Link>
                     </Typography>
                 </Box>
             </Container>
