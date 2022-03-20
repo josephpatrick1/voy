@@ -1,10 +1,13 @@
 import { CalendarMonth, EmojiEvents, MenuBook, Person, School } from "@mui/icons-material"
 import { Box, Card, CardContent, CardMedia, Grid, Toolbar, Typography } from "@mui/material"
 import { useRouter } from "next/router"
+import { useAuth } from "../../contexts/authContext"
 import { Progress } from "../progress"
 import RightDrawer from "../rightDrawer"
 
 export const MainScreen = () => {
+
+    const auth = useAuth();
 
     const router = useRouter();
 
@@ -44,7 +47,7 @@ export const MainScreen = () => {
         <Grid container spacing={2} sx={{ padding: "10px" }}>
             <Grid item xs={12}>
                 <Typography variant="h6">
-                    Bonjour Joseph!
+                    Bonjour {auth.user?.name}!
                 </Typography>
                 <Progress/>
             </Grid>

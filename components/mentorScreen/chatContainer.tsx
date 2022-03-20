@@ -1,20 +1,34 @@
 import { Send } from "@mui/icons-material";
 import { Avatar, Box, Button, Grid, List, ListItem, ListItemAvatar, SxProps, TextField, Typography } from "@mui/material"
+import { useState } from "react";
+import { api } from "../../services/api";
 
 export const ChatContainer = () => {
 
-    const messages = [{
+    const [message, setMessage] = useState("");
+
+    const [messages, setMessages] = useState([{
         id: "1",
-        type: "user",
-        message: "Olá",
-        translate: "Olá"
-    },
-    {
-        id: "2",
         type: "mentor",
-        message: "Oi, como vai?",
-        translate: "Oi, como vai?"
-    }];
+        message: "Bonjour!",
+        translate: "Olá"
+    }]);
+
+    const handleSendButton = async () => {
+        const data: any = await api.get("/translate?message=" + encodeURI(message));
+        setMessages(e => [...e, {
+            id: (new Date().toISOString()),
+            type: "user",
+            message,
+            translate: data.data.result
+        },
+        {
+            id: "x"+(new Date().toISOString()),
+            type: "mentor",
+            message: "Passons à un appel vidéo!",
+            translate: "Vamos fazer uma videochamada!"
+        }]);
+    }
 
     const sxMessageUser: SxProps = {
         background: "#EEEEEE",
@@ -63,12 +77,12 @@ export const ChatContainer = () => {
                 })}
             </List>
         </Box>
-        <Grid container sx={{padding: "0px 5px", position: "fixed", bottom: "0px", background: "#ddd"}}>
+        <Grid container sx={{ padding: "0px 5px", position: "fixed", bottom: "0px", background: "#ddd" }}>
             <Grid item xs={8}>
-                <TextField variant="standard" sx={{border: "1px solid gray", margin: "6px"}} />
+                <TextField value={message} onChange={(e) => setMessage(e.target.value)} variant="standard" sx={{ border: "1px solid gray", margin: "6px" }} />
             </Grid>
-            <Grid item xs={4} sx={{padding: "6px"}}>
-                <Button size="small" fullWidth sx={{ width: "100%", height: "100%" }} variant="contained">
+            <Grid item xs={4} sx={{ padding: "6px" }}>
+                <Button onClick={handleSendButton} size="small" fullWidth sx={{ width: "100%", height: "100%" }} variant="contained">
                     <Send />
                 </Button>
             </Grid>

@@ -13,10 +13,15 @@ import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 import Image from "next/image"
 import logo from "../../assets/images/logo.png"
+import { useAuth } from '../../contexts/authContext';
+import { useRouter } from 'next/router';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function RightDrawer() {
+
+  const {signOut} = useAuth();
+  const router = useRouter();
   const [state, setState] = React.useState({
     right: false,
   });
@@ -36,6 +41,8 @@ export default function RightDrawer() {
         setState({ ...state, [anchor]: open });
       };
 
+
+
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: 200 }}
@@ -44,26 +51,14 @@ export default function RightDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button onClick={() => {
+          signOut();
+          router.push("/login");
+        }}>
+          <ListItemText primary={"Desconectar"} />
+        </ListItem>
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
