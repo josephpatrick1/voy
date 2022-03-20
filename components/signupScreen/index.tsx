@@ -7,26 +7,34 @@ import Link from "next/link";
 import { useAuth } from "../../contexts/authContext";
 import { useRouter } from "next/router";
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
     const theme = createTheme({
         palette: {
             mode: "dark"
         }
     });
 
-    const { signIn } = useAuth();
+    const { signUp } = useAuth();
 
-    const [username, setUsername] = useState<string>();
-    const [password, setPassword] = useState<string>();
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [birthDate, setBirthDate] = useState<string>('');
+    const [avatar, setAvatar] = useState<string>('');
 
-    const handleLogin = async () => {
+    const handleSignUp = async () => {
         if(!username || !password) {
             alert("Preencha o Login e Senha")
             return false;
         }
-        signIn({
+        signUp({
             username,
-            password
+            password,
+            name, 
+            birthDate,
+            email,
+            avatar,
         });
     }
 
@@ -53,6 +61,14 @@ export default function LoginScreen() {
                     <br /><br />
                     <TextField value={password} onChange={(e) => { setPassword(e.target.value) }} variant="outlined" label="Senha" type="password" />
                     <br /><br />
+                    <TextField value={name} onChange={(e) => { setName(e.target.value) }} variant="outlined" label="Nome" type="text" />
+                    <br /><br />
+                    <TextField value={email} onChange={(e) => { setEmail(e.target.value) }} variant="outlined" label="Email" type="email" />
+                    <br /><br />
+                    <TextField value={birthDate} onChange={(e) => { setBirthDate(e.target.value) }} variant="outlined" label="Data de nascimento" type="date" />
+                    <br /><br />
+                    <TextField value={avatar} onChange={(e) => { setAvatar(e.target.value) }} variant="outlined" label="Link para uma foto" type="text" />
+                    <br /><br />
 
                     <Link href="/principal">
                         <Button
@@ -63,15 +79,11 @@ export default function LoginScreen() {
                             }}
                             variant="contained"
                             fullWidth
-                            onClick={handleLogin}
+                            onClick={handleSignUp}
                         >
-                            Entrar
+                            Cadastrar
                         </Button>
                     </Link>
-                    <br /><br />
-                    <Typography>
-                        Novo por aqui? <Link href="/signup">Criar Conta</Link>
-                    </Typography>
                 </Box>
             </Container>
         </ThemeProvider>

@@ -8,11 +8,22 @@ interface SignInProps {
     password: string;
 }
 
+interface SignUpProps {
+    username: string;
+    name: string;
+    email: string;
+    birthDate: string;
+    avatar?: string;
+    password: string;
+}
+
 interface UserProps {
     username: string;
     name: string;
     email: string;
     birthDate: string;
+    avatar?: string;
+    score?: number;
 }
 
 interface AuthProviderProps {
@@ -22,6 +33,7 @@ interface AuthProviderProps {
 interface AuthContextProps {
     signIn: (data: SignInProps) => Promise<void>;
     signOut: () => Promise<void>;
+    signUp: (data: SignUpProps) => Promise<void>
     user: UserProps | null;
 }
 
@@ -73,6 +85,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
         });
     }
 
+    async function signUp({ username, password, email, birthDate, name, avatar }: SignUpProps) {
+        await api.post('user/', { username, password, email, birthDate, name, avatar }).then(({ data })=>{
+            if(data){
+                setUser(data);
+            }
+            else {
+                alert("Nao foi possível criar o usuário!");
+                setUser(null);
+            }
+                
+        }).catch((error) => {
+            console.log(error);
+            
+            setUser(null);
+            alert("Nao foi possível criar o usuário!");
+        });
+    }
+
     async function signOut() {
         setUser(null);
 
@@ -84,6 +114,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         <AuthContext.Provider value={{
             signIn,
             signOut,
+            signUp,
             user,
         }}>
             {children}
