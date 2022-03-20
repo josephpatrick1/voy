@@ -48,7 +48,7 @@ export const MainScreen = () => {
                 </Typography>
                 <Progress/>
             </Grid>
-            {items.map(item => (<Grid item xs={6}>
+            {items.map(item => (<Grid key={item.id} item xs={6}>
                 <Card key={item.id} onClick={item.onClick} sx={{ height: "100%" }}>
                     <CardContent>
                         <Box sx={{ color: "#D80027" }}>

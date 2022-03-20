@@ -35,7 +35,7 @@ export const ChatContainer = () => {
             <List>
                 {messages.map(message => {
                     if (message.type === "user") {
-                        return <ListItem sx={sxMessageUser} >
+                        return <ListItem key={message.id} sx={sxMessageUser} >
                             <Avatar>J</Avatar>
                             <Box sx={{ marginLeft: "6px" }}>
                                 <Typography variant="body1">
@@ -48,7 +48,7 @@ export const ChatContainer = () => {
                             <Box sx={{ flexGrow: 1 }}></Box>
                         </ListItem>
                     }
-                    return <ListItem sx={sxMessageMentor} >
+                    return <ListItem key={message.id} sx={sxMessageMentor} >
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box sx={{ marginRight: "6px" }}>
                             <Typography variant="body1">
