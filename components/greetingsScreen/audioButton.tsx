@@ -5,27 +5,35 @@ import useAudio from "../../hooks/useAudio";
 
 export const AudioButton = ({ audioUrl }: { audioUrl: string }) => {
 
-    const [audio] = useState(new Audio());
+    const [audio, setAudio] = useState<HTMLAudioElement>();
     const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
-        if (isPlaying) {
-            if(!audio.src) {
-                audio.src = audioUrl;
+        if (audio) {
+            if (isPlaying) {
+                if (!audio.src) {
+                    audio.src = audioUrl;
+                }
+                audio.play();
             }
-            audio.play();
-        }
-        else {
-            audio.pause();
+            else {
+                audio.pause();
+            }
         }
     }, [isPlaying])
 
     useEffect(() => {
-        audio.addEventListener('ended', () => setIsPlaying(false));
-        return () => {
-            audio.removeEventListener('ended', () => setIsPlaying(false));
-        };
-    })
+        setAudio(new Audio());
+    }, [])
+
+    useEffect(() => {
+        if (audio) {
+            audio.addEventListener('ended', () => setIsPlaying(false));
+            return () => {
+                audio.removeEventListener('ended', () => setIsPlaying(false));
+            };
+        }
+    }, [audio])
 
     return <IconButton
         sx={{
