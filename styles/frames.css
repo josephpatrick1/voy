@@ -1,0 +1,11 @@
+.frame-bg {
+    background-image: url(/hero.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    z-index: -10;
+    height: 120vh;
+    width: 100%;
+}
+
+@import "devices.css";

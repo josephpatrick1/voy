@@ -1,24 +1,21 @@
 import { Box } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import LoginScreen from '../components/loginScreen'
 import { ModelScreen } from '../components/modelScreen'
 import { Intro } from '../components/modelScreen/intro'
 
-const Home: NextPage = () => {
+const Login: NextPage = () => {
   return (
     <Box>
       <Head>
-        <title>Voyagez Ici</title>
+        <title>Voyagez Ici - Login</title>
       </Head>
-      <div className='frame-bg' />
       <ModelScreen content={<Intro />}>
-        <iframe
-          style={{width: "100%", height: "100%" , border: "none"}}
-          src="/principal"
-        />
+        <LoginScreen/>
       </ModelScreen>
     </Box>
   )
 }
 
-export default Home
+export default Login
