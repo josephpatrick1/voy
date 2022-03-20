@@ -11,9 +11,7 @@ const Login: NextPage = () => {
       <Head>
         <title>Voyagez Ici - Login</title>
       </Head>
-      <ModelScreen content={<Intro />}>
-        <LoginScreen/>
-      </ModelScreen>
+      <LoginScreen />
     </Box>
   )
 }

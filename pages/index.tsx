@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <ModelScreen content={<Intro />}>
         <iframe
           style={{width: "100%", height: "100%" , border: "none"}}
-          src="/principal"
+          src="/login"
         />
       </ModelScreen>
     </Box>
