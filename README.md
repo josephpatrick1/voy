@@ -5,6 +5,11 @@ Protótipo - Voyagez Ici
 
 [https://voyagez-ici.vercel.app/](https://voyagez-ici.vercel.app/)
 
+## Telas
+
+![Tela](https://raw.githubusercontent.com/josephpatrick1/voy/main/assets/images/screen1.png)
+![Tela](https://raw.githubusercontent.com/josephpatrick1/voy/main/assets/images/screen1.png)
+
 ## Para começar
 
 Primeiro, clone este repositório, e execute os seguintes comandos no terminal
