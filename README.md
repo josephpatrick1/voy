@@ -8,7 +8,7 @@ Protótipo - Voyagez Ici
 ## Telas
 
 ![Tela](https://raw.githubusercontent.com/josephpatrick1/voy/main/assets/images/screen1.png)
-![Tela](https://raw.githubusercontent.com/josephpatrick1/voy/main/assets/images/screen1.png)
+![Tela](https://raw.githubusercontent.com/josephpatrick1/voy/main/assets/images/screen2.png)
 
 ## Para começar
 
